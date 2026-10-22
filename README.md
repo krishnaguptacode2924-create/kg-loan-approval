@@ -2,7 +2,21 @@
 
 An end-to-end machine learning project that predicts whether a loan application is likely to be approved. A Logistic Regression model is served through a FastAPI backend, and a web interface lets users enter an application and see the decision with a confidence score. The API and UI are deployed together as one service.
 
-**Live demo:** [add your Render URL here]
+**Live demo:** https://kg-loan-approval.onrender.com
+
+## Screenshots
+
+### Application form
+![Application form](docs/images/form.png)
+
+### Approved result
+![Approved result](docs/images/approved1.png)
+![Approved result](docs/images/approved2.png)
+
+### Not approved result
+![Not approved result](docs/images/reject1.png)
+![Not approved result](docs/images/reject2.png)
+
 
 ## Features
 
@@ -69,6 +83,11 @@ uvicorn KG_Loan_Predict_API:app --port 8000
 Then open `http://localhost:8000` for the UI, or `http://localhost:8000/docs` for the API docs.
 
 ## API
+
+**Live demo:** https://kg-loan-approval.onrender.com/docs
+
+### API documentation
+![API documentation](docs/images/api.png)
 
 `POST /predict` returns:
 
