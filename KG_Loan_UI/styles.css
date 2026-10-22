@@ -1,0 +1,105 @@
+:root {
+  --paper: #0e181b;
+  --sheet: #152327;
+  --ink: #e6ecec;
+  --muted: #9bb0b3;
+  --line: #2a3c41;
+  --field-line: #4a6066;
+  --deep: #0a1417;
+  --brass: #c9a85c;
+  --approve: #6fcf9b;
+  --approve-bg: #143024;
+  --decline: #ef8f80;
+  --decline-bg: #3a1c18;
+  --focus: #7cc0ec;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html { color-scheme: dark; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--sans); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+.masthead { background: var(--deep); color: #f1f4f3; border-bottom: 3px solid var(--brass); }
+.masthead-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 28px; padding-bottom: 28px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 18px; }
+.brand-mark { display: grid; place-items: center; width: 52px; height: 52px; border: 1.5px solid var(--brass); color: var(--brass); font: 600 22px var(--serif); letter-spacing: .04em; }
+.brand h1 { margin: 0; font: 500 30px/1.15 var(--serif); }
+.brand p { margin: 4px 0 0; color: #b9c7c9; font-size: 14.5px; }
+.status { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #c9d5d6; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: #8a9a9d; }
+.status.online .dot { background: #5fd49a; }
+.status.offline .dot { background: #f08a7a; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 32px; padding-top: 36px; padding-bottom: 36px; align-items: start; }
+
+.sheet { background: var(--sheet); border: 1px solid var(--line); padding: 8px 32px 28px; border-radius: 4px; }
+fieldset { border: 0; padding: 0; margin: 0; }
+fieldset + fieldset { border-top: 1px solid var(--line); }
+legend { float: left; width: 100%; padding: 26px 0 16px; font: 500 22px/1.2 var(--serif); }
+legend + .grid { clear: both; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; padding-bottom: 26px; }
+.span2 { grid-column: span 2; }
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; }
+input, select { font: 400 16px var(--sans); color: var(--ink); background: var(--sheet); border: 1px solid var(--field-line); border-radius: 3px; padding: 11px 12px; width: 100%; min-height: 46px; }
+input::placeholder { color: #7a8f93; }
+input:hover, select:hover { border-color: var(--muted); }
+input:focus-visible, select:focus-visible, .btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; }
+.hint { font-weight: 400; color: var(--muted); font-size: 13px; }
+.err { color: var(--decline); font-weight: 500; font-size: 13px; min-height: 0; }
+.err:empty { display: none; }
+.field.invalid input { border-color: var(--decline); }
+
+.actions { display: flex; justify-content: flex-end; gap: 12px; border-top: 1px solid var(--line); padding-top: 22px; }
+.btn { font: 600 15px var(--sans); padding: 12px 22px; border-radius: 3px; cursor: pointer; min-height: 46px; border: 1px solid transparent; }
+.btn.primary { background: #2a6477; color: #fff; border-color: #2a6477; }
+.btn.primary:hover { background: #327a90; }
+.btn.primary[disabled] { opacity: .6; cursor: progress; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--field-line); }
+.btn.ghost:hover { background: var(--paper); }
+
+.decision { position: sticky; top: 24px; background: var(--sheet); border: 1px solid var(--line); border-top: 3px solid var(--brass); border-radius: 4px; padding: 22px 26px 26px; }
+.decision h2 { margin: 0 0 14px; font: 500 22px var(--serif); }
+.lead { font: 500 20px var(--serif); margin: 0 0 6px; }
+.muted { color: var(--muted); margin: 0; font-size: 15px; }
+.idle { padding: 8px 0 4px; }
+
+.verdict { border: 1.5px solid currentColor; border-radius: 3px; padding: 18px 20px; margin-bottom: 18px; animation: stamp .35s cubic-bezier(.2,.9,.3,1.2); }
+.verdict.yes { color: var(--approve); background: var(--approve-bg); }
+.verdict.no { color: var(--decline); background: var(--decline-bg); }
+.verdict.unknown { color: var(--ink); background: var(--paper); }
+.verdict small { display: block; font-size: 13px; opacity: .85; margin-bottom: 2px; }
+.verdict strong { display: block; font: 600 34px/1.1 var(--serif); }
+@keyframes stamp { from { transform: scale(1.06) rotate(-1deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .verdict { animation: none; } }
+
+.meter { margin: 0 0 18px; }
+.meter-top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+.meter-bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.meter-bar i { display: block; height: 100%; background: var(--brass); }
+
+dl.summary { margin: 0 0 12px; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 14.5px; border-top: 1px solid var(--line); padding-top: 14px; }
+dl.summary dt { color: var(--muted); }
+dl.summary dd { margin: 0; text-align: right; font-weight: 500; }
+details { font-size: 13.5px; color: var(--muted); }
+details pre { background: var(--paper); padding: 10px; overflow: auto; border-radius: 3px; color: var(--ink); }
+
+.spinner { width: 22px; height: 22px; border: 3px solid var(--line); border-top-color: var(--brass); border-radius: 50%; animation: spin .8s linear infinite; margin-bottom: 12px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2.5s; } }
+.problem { color: var(--decline); }
+.problem ul { margin: 8px 0 0; padding-left: 18px; }
+
+.foot { padding-bottom: 40px; color: var(--muted); font-size: 13.5px; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .decision { position: static; }
+}
+@media (max-width: 560px) {
+  .grid { grid-template-columns: 1fr; }
+  .span2 { grid-column: auto; }
+  .sheet { padding: 4px 18px 22px; }
+  .actions { flex-direction: column-reverse; }
+  .btn { width: 100%; }
+}

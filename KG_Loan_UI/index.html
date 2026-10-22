@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KG Loan Approval</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1417">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead-row">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">KG</span>
+        <div>
+          <h1>Loan Approval Assessment</h1>
+          <p>Enter the application details to receive a model-based decision.</p>
+        </div>
+      </div>
+      <div class="status" id="status" role="status"><span class="dot"></span><span id="status-text">Checking service…</span></div>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <form id="form" class="sheet" novalidate>
+      <fieldset>
+        <legend>Applicant</legend>
+        <div class="grid">
+          <label class="field">Gender
+            <select name="gender" required>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+            </select>
+          </label>
+          <label class="field">Marital status
+            <select name="married" required>
+              <option value="Married">Married</option>
+              <option value="Single">Single</option>
+            </select>
+          </label>
+          <label class="field">Dependents
+            <input type="number" name="dependents" min="0" step="1" value="0" required inputmode="numeric">
+            <small class="err" data-for="dependents"></small>
+          </label>
+          <label class="field">Education
+            <select name="graduate" required>
+              <option value="Yes">Graduate</option>
+              <option value="No">Not a graduate</option>
+            </select>
+          </label>
+          <label class="field span2">Employment type
+            <select name="selfEmployed" required>
+              <option value="No">Salaried / other</option>
+              <option value="Yes">Self-employed</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Income</legend>
+        <div class="grid">
+          <label class="field">Applicant income
+            <input type="number" name="income" min="0" step="any" placeholder="e.g. 5000" required inputmode="decimal">
+            <small class="hint">Monthly</small>
+            <small class="err" data-for="income"></small>
+          </label>
+          <label class="field">Co-applicant income
+            <input type="number" name="coincome" min="0" step="any" placeholder="0 if none" value="0" required inputmode="decimal">
+            <small class="hint">Monthly</small>
+            <small class="err" data-for="coincome"></small>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Loan and property</legend>
+        <div class="grid">
+          <label class="field">Loan amount
+            <input type="number" name="amount" min="1" step="any" placeholder="e.g. 150000" required inputmode="decimal">
+            <small class="hint">Full amount, not in thousands</small>
+            <small class="err" data-for="amount"></small>
+          </label>
+          <label class="field">Repayment term
+            <select name="term" required>
+              <option value="60">5 years (60 months)</option>
+              <option value="120">10 years (120 months)</option>
+              <option value="180">15 years (180 months)</option>
+              <option value="240">20 years (240 months)</option>
+              <option value="300">25 years (300 months)</option>
+              <option value="360" selected>30 years (360 months)</option>
+              <option value="480">40 years (480 months)</option>
+            </select>
+          </label>
+          <label class="field">Credit score
+            <input type="number" name="credit" min="300" max="900" step="1" placeholder="e.g. 750" required inputmode="numeric">
+            <small class="hint">A score of 700 or above counts as good credit</small>
+            <small class="err" data-for="credit"></small>
+          </label>
+          <label class="field">Property area
+            <select name="property" required>
+              <option value="Urban">Urban</option>
+              <option value="Semiurban">Semi-urban</option>
+              <option value="Rural">Rural</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="reset" class="btn ghost" id="reset">Clear form</button>
+        <button type="submit" class="btn primary" id="submit">Assess application</button>
+      </div>
+    </form>
+
+    <aside class="decision" id="decision" aria-live="polite">
+      <h2>Assessment</h2>
+      <div id="panel" class="panel idle">
+        <p class="lead">No assessment yet.</p>
+        <p class="muted">Complete the form and select <em>Assess application</em>. The decision appears here.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="wrap foot">
+    <p>This result is generated by a statistical model and supports, but does not replace, a credit officer's review.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
